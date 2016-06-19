@@ -14,13 +14,26 @@ nicer.
 than 7 one-liners. Consider inlining functions. Consider merging black
 and white pawn functions.
 
-- add a feature where you can disable/enable engine with a certain input,
-for example p, instead of just having q, r, and moves as the input.
+- Add a feature where you can disable/enable engine analysis with a 
+certain input, for example p, instead of just having q, r, and enterring
+moves as the input.
 
-- clean up castling code, the main game loop, and other terrible code
+- Clean up castling code, the main game loop, and other terrible code
 that I threw together in a rush for the deadline.
 
 - Try to find what is causing the engine to have trouble making it past
 depth 6 and optimize it/fix it. Aim for depth 8 right now.
 
 - Replace getline in code so that you can compile to non-POSIX systems.
+
+- Consider making the engine run in the background, so the user doesn't
+have to wait for it to think.
+
+- Implement a one sided game where the engine only plays for 1 side
+instead of suggesting moves for both but not actually playing.
+
+- Clean up my terrible alpha beta search and split it into a min and a 
+max function.
+
+- Test repeatedly for playing strength and to find the myriad of bugs 
+that keep popping up.
