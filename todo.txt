@@ -37,3 +37,8 @@ max function.
 
 - Test repeatedly for playing strength and to find the myriad of bugs 
 that keep popping up.
+
+- Add a fen/pgn reader
+
+- Consider adding UCI protocol and multithreading eventually, but only
+after other features are complete.
