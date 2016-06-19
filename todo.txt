@@ -22,3 +22,5 @@ that I threw together in a rush for the deadline.
 
 - Try to find what is causing the engine to have trouble making it past
 depth 6 and optimize it/fix it. Aim for depth 8 right now.
+
+- Replace getline in code so that you can compile to non-POSIX systems.
