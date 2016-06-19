@@ -50,8 +50,8 @@ int main(int argc, char** argv)
 
         int evaluation = alphaBetaSearch(move%2, 0, -10000, 10000);
         printf("\nEval: %d\n", evaluation);
-		printf("start: %d\n", (bestMove >> 6) & 0x3f);
-		printf("end: %d\n", bestMove & 0x3f);
+		printf("start: %lld\n", (bestMove >> 6) & 0x3f);
+		printf("end: %lld\n", bestMove & 0x3f);
 
 
         legal = 0;
