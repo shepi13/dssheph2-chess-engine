@@ -13,9 +13,6 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include "moves.h"
-#include "magicNumbers.h"
-#include "magicGeneration.h"
 
 #define bPieces (bP | bR | bN | bB | bQ | bK)
 #define wPieces (wP | wR | wN | wB | wQ | wK)
@@ -95,13 +92,6 @@ void destroyBoard();
 
 
 int bitIndex(unsigned long long bitboard);
-Moves * generatePawnMoves(Moves *m, int index, int color);
-Moves * generateKnightMoves(Moves *m, int index, int color);
-Moves * generateKingMoves(Moves *m, int index, int color);
-Moves * generateRookMoves(Moves *m, int index, int color);
-Moves * generateBishopMoves(Moves *m, int index, int color);
-Moves * generateQueenMoves(Moves *m, int index, int color);
-Moves * generateLegalMoves(int color);
 
 int __builtin_popcountll (unsigned long long x);
 

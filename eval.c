@@ -1,4 +1,5 @@
 #include "eval.h"
+#include "moveGeneration.h"
 
 unsigned long long bestMove;
 

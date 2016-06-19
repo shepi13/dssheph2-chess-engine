@@ -4,6 +4,7 @@
 //add a feature where you can disable/enable the engine with a certain input
 #include "board.h"
 #include "eval.h"
+#include "moveGeneration.h"
 
 #define freeWKingside  !(Pieces & 0x0000000000000060)
 #define freeWQueenside !(Pieces & 0x000000000000000e)
