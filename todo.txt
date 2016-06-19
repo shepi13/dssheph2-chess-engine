@@ -47,6 +47,13 @@ repeating. Worth a slight performance hit.
 
 - Add opening book.
 
+- Consider making the engine run continuosly, slowly increasing depth.
+Simple function in twoPlayer.c to call depth 1, then depth 2, then depth
+3, etc should suffice.
+
+- Rename twoPlayer.c, it's a terrible name from when I thought I would
+need separate twoPlayer.c and onePlayer.c files for some reason.
+
 - Add a fen/pgn reader
     - Add support for taking back moves. Could just store previous fens
     if lazy.
