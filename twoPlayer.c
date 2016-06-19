@@ -2,6 +2,7 @@
 //originally didn't call the engine ever in this file.
 //TODO:
 //add a feature where you can disable/enable the engine with a certain input
+//clean up the terrible/inefficient code that exists in this file.
 #include "board.h"
 #include "eval.h"
 #include "moveGeneration.h"

@@ -1,0 +1,24 @@
+- Add piece square tables
+
+- Consider trying to learn how to implement a hash table for transpositions
+
+- add a GUI
+    -probably OpenGL and freeglut, as that is what I am most familiar with.
+
+- Fix problems with enpassant, add pawn promotion/underpromotion, and
+test castling for white and black both kingside and queenside. Also make
+castling more efficient, while not necessary will make it look slightly
+nicer.
+
+- Merge pawn functions in moves.h into only a couple functions, rather
+than 7 one-liners. Consider inlining functions. Consider merging black
+and white pawn functions.
+
+- add a feature where you can disable/enable engine with a certain input,
+for example p, instead of just having q, r, and moves as the input.
+
+- clean up castling code, the main game loop, and other terrible code
+that I threw together in a rush for the deadline.
+
+- Try to find what is causing the engine to have trouble making it past
+depth 6 and optimize it/fix it. Aim for depth 8 right now.

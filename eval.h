@@ -1,4 +1,8 @@
 //The actual chess engine.
+//TODO:
+//add piece-square tables, try to optimize engine to get to depth 8 goal
+//
+//consider trying to learn how to implement a hash table for transpositions.
 #ifndef EVAL_H
 #define EVAL_H
 

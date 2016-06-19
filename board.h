@@ -1,5 +1,14 @@
 //The board representation and miscellaneous functions as orignally was the
 //main file of the project.
+//
+//TODO:
+//add a GUI
+//fix problems with enpassant
+//add pawn promotion and underpromotion
+//test that castling works as intended
+//
+//make castling very slightly more efficient by removing unecessary
+//check of what piece was moved. Only need to check starting square.
 #ifndef BOARD_H
 #define BOARD_H
 
