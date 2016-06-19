@@ -39,6 +39,8 @@ max function.
 that keep popping up.
 
 - Add a fen/pgn reader
+    - Add support for taking back moves. Could just store previous fens
+    if lazy.
 
 - Consider adding UCI protocol and multithreading eventually, but only
 after other features are complete.
