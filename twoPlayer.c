@@ -128,7 +128,11 @@ int main(int argc, char** argv)
         else
         {
             printf("Moving from square %d to square %d is illegal, plz enter a legalMove\n", start, end);
-            getline(&inputMove, &n, stdin);
+            if(getline(&inputMove, &n, stdin) == -1);
+            {
+                perror("Getline failed, exiting");
+                exit(EXIT_FAILURE);
+            }
         }
     } while(inputMove != "q");    
 

@@ -274,7 +274,11 @@ void generateRookMagic()
 
         do
         {
-            read(randomSrc, rand, 3 * sizeof(unsigned long long)); 
+            if(read(randomSrc, rand, 3 * sizeof(unsigned long long)) == -1)
+            {
+                perror("read failed"); 
+                exit(EXIT_FAILURE);
+            }
 
             magic = rand[0] & rand[1] & rand[2];
             attempts++;
@@ -328,7 +332,11 @@ void generateBishopMagic()
 
         do
         {
-            read(randomSrc, rand, 3 * sizeof(unsigned long long));
+            if(read(randomSrc, rand, 3 * sizeof(unsigned long long)) == -1)
+            {
+                perror("read failed");
+                exit(EXIT_FAILURE);
+            }
 
             magic = rand[0] & rand[1] & rand[2];
             attempts++;
