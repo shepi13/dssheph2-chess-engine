@@ -1,5 +1,5 @@
-game: board.c eval.c moves.c twoPlayer.c magicNumbers.c magicGeneration.c moveGeneration.c
-	gcc -o game -Ofast -std=c99 board.c eval.c moves.c twoPlayer.c magicNumbers.c magicGeneration.c moveGeneration.c
+textGame: board.c eval.c moves.c twoPlayer.c magicNumbers.c magicGeneration.c moveGeneration.c
+	gcc -o textGame -Ofast -std=c99 board.c eval.c moves.c twoPlayer.c magicNumbers.c magicGeneration.c moveGeneration.c
 
 test: board.c eval.c moves.c twoPlayer.c magicNumbers.c magicGeneration.c moveGeneration.c
 	gcc -o test -Ofast -std=c99 board.c eval.c moves.c twoPlayer.c magicNumbers.c magicGeneration.c moveGeneration.c
@@ -9,3 +9,4 @@ windows: board.c eval.c moves.c twoPlayer.c magicNumbers.c magicGeneration.c mov
 
 clean:
 	rm test
+	rm *.o

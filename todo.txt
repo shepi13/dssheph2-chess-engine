@@ -5,10 +5,9 @@
 - add a GUI
     -probably OpenGL and freeglut, as that is what I am most familiar with.
 
-- Fix problems with enpassant, add pawn promotion/underpromotion, and
-test castling for white and black both kingside and queenside. Also make
-castling more efficient, while not necessary will make it look slightly
-nicer.
+- Add pawn promotion/underpromotion, and test castling for white and black 
+both kingside and queenside. Also make castling more efficient, while not 
+necessary will make it look slightly nicer.
 
 - Merge pawn functions in moves.h into only a couple functions, rather
 than 7 one-liners. Consider inlining functions. Consider merging black
@@ -61,6 +60,9 @@ need separate twoPlayer.c and onePlayer.c files for some reason.
 - Figure out how to add slight penalties for doubled/isolated pawns,
 bonuses for passed pawns especially far advanced passed pawns, and also
 for the bishop pair.
+
+- Move all bitboards to an array for spacial locality and maybe consider working with cache
+optimizations or figuring out how to better vectorize the code.
 
 - Consider adding UCI protocol and multithreading eventually, but only
 after other features are complete.

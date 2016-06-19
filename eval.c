@@ -3,7 +3,7 @@
 
 unsigned long long bestMove;
 
-const int maxDepth = 6;
+const int maxDepth = 4;
 const int pawnVal = 100;
 const int knightVal = 350;
 const int bishopVal = 370;
@@ -102,10 +102,12 @@ int alphaBetaSearch(int side, int currentDepth, int alpha, int beta)
             int wqueentemp = whiteQueenside;
             int bkingtemp = blackKingside;
             int bqueentemp = blackQueenside;
+            unsigned long long tempenpassant = enpassantsquare;
 
 			makeMove(start, end);
 			int result = alphaBetaSearch(side + 1, currentDepth+1, alpha, beta);			
 
+            enpassantsquare = tempenpassant;
             whiteKingside = wkingtemp;
             whiteQueenside = wqueentemp;
             blackKingside = bkingtemp;
@@ -167,6 +169,7 @@ int alphaBetaSearch(int side, int currentDepth, int alpha, int beta)
             int wqueentemp = whiteQueenside;
             int bkingtemp = blackKingside;
             int bqueentemp = blackQueenside;
+            unsigned long long tempenpassant = enpassantsquare;
 
             makeMove(start, end);
             int result = alphaBetaSearch(side + 1, currentDepth+1, alpha, beta);
@@ -187,6 +190,7 @@ int alphaBetaSearch(int side, int currentDepth, int alpha, int beta)
             whiteQueenside = wqueentemp;
             blackKingside = bkingtemp;
             blackQueenside = bqueentemp;
+            enpassantsquare = tempenpassant;
 
 			if(result < beta)
 			{
