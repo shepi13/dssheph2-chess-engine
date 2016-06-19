@@ -38,9 +38,22 @@ max function.
 - Test repeatedly for playing strength and to find the myriad of bugs 
 that keep popping up.
 
+- Test for 3 move repetion and return 0s to avoid the engine stupidly
+repeating. Worth a slight performance hit.
+
+- Test for 50 move rule
+
+- Add castling for engine and test for king safety somehow.
+
+- Add opening book.
+
 - Add a fen/pgn reader
     - Add support for taking back moves. Could just store previous fens
     if lazy.
+
+- Figure out how to add slight penalties for doubled/isolated pawns,
+bonuses for passed pawns especially far advanced passed pawns, and also
+for the bishop pair.
 
 - Consider adding UCI protocol and multithreading eventually, but only
 after other features are complete.
