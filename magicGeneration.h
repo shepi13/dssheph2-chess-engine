@@ -1,3 +1,5 @@
+//functions to generate magic numbers that can be used for magic-bitboard
+//move generation
 #ifndef MAGICGENERATION_H
 #define MAGICGENERATION_H
 #include "board.h"

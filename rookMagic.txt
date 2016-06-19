@@ -1,3 +1,6 @@
+Numbers calculated by functions in magicGeneration.c, used for magic bitboard move
+generation of rook moves.
+
 rookMagic[0] = -9187343066963213552;
 rookMagic[1] = 198175976864653312;
 rookMagic[2] = 108121577579610152;

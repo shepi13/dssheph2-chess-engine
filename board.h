@@ -1,3 +1,5 @@
+//The board representation and miscellaneous functions as orignally was the
+//main file of the project.
 #ifndef BOARD_H
 #define BOARD_H
 

@@ -1,3 +1,7 @@
+//File containing main function and actual chess game. Named two player because
+//originally didn't call the engine ever in this file.
+//TODO:
+//add a feature where you can disable/enable the engine with a certain input
 #include "board.h"
 #include "eval.h"
 

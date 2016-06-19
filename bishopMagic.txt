@@ -1,3 +1,6 @@
+Numbers calculated by functions in magicGeneration.c, used for magic bitboard move
+generation of bishop moves.
+
 bishopMagic[0] = 297246577800546304;
 bishopMagic[1] = 967574829400064;
 bishopMagic[2] = 58551264088166656;
