@@ -41,8 +41,7 @@ max function.
 - Test repeatedly for playing strength and to find the myriad of bugs 
 that keep popping up.
 
-- Test for 3 move repetion and return 0s to avoid the engine stupidly
-repeating. Worth a slight performance hit.
+- Test for stalemate
 
 - Test for 50 move rule
 
