@@ -143,7 +143,7 @@ void initializeBoard()
 
 }
 
-void makeMoveFast(int start, int end, unsigned long long *piece)
+void makeMoveFast(int start, int end, int flags, unsigned long long *piece)
 {
     *piece &= 0xffffffffffffffffLL ^ (1LL << (long)start); 
     
@@ -196,37 +196,57 @@ void makeMoveFast(int start, int end, unsigned long long *piece)
     bQ &= mask;
     bK &= mask;
 
-    *piece |= (1LL << (long)end);
+    if(flags != 0)
+    {
+        if(flags == 1 && piece == &wP)
+            wQ |= (1LL << (long)end);
+        if(flags == 2 && piece == &wP)
+            wN |= (1LL << (long)end);
+        if(flags == 3 && piece == &wP)
+            wR |= (1LL << (long)end);
+        if(flags == 4 && piece == &wP)
+            wB |= (1LL << (long)end);
+        if(flags == 1 && piece == &bP)
+            bQ |= (1LL << (long)end);
+        if(flags == 2 && piece == &bP)
+            bN |= (1LL << (long)end);
+        if(flags == 3 && piece == &bP)
+            bR |= (1LL << (long)end);
+        if(flags == 4 && piece == &bP)
+            bB |= (1LL << (long)end);
+    }
+    else
+        *piece |= (1LL << (long)end);
 }
 
-void makeMove(int start, int end)
+void makeMove(int start, int end, int flags)
 {
     unsigned long long startSquare = (1LL << start);
 
     if(wP & startSquare)
-        makeMoveFast(start, end, &wP);
+        makeMoveFast(start, end, flags, &wP);
     else if(bP & startSquare)
-        makeMoveFast(start, end, &bP);
+        makeMoveFast(start, end, flags, &bP);
     else if(wR & startSquare)
-        makeMoveFast(start, end, &wR);
+        makeMoveFast(start, end, flags, &wR);
     else if(bR & startSquare)
-        makeMoveFast(start, end, &bR);
+        makeMoveFast(start, end, flags, &bR);
     else if(wN & startSquare)
-        makeMoveFast(start, end, &wN);
+        makeMoveFast(start, end, flags, &wN);
     else if(bN & startSquare)
-        makeMoveFast(start, end, &bN);
+        makeMoveFast(start, end, flags, &bN);
     else if(wB & startSquare)
-        makeMoveFast(start, end, &wB);
+        makeMoveFast(start, end, flags, &wB);
     else if(bB & startSquare)
-        makeMoveFast(start, end, &bB);
+        makeMoveFast(start, end, flags, &bB);
     else if(wQ & startSquare)
-        makeMoveFast(start, end, &wQ);
+        makeMoveFast(start, end, flags, &wQ);
     else if(bQ & startSquare)
-        makeMoveFast(start, end, &bQ);
+        makeMoveFast(start, end, flags, &bQ);
     else if(wK & startSquare)
-        makeMoveFast(start, end, &wK);
+        makeMoveFast(start, end, flags, &wK);
     else if(bK & startSquare)
-        makeMoveFast(start, end, &bK);
+        makeMoveFast(start, end, flags, &bK);
 }
 
 void printBitBoard(unsigned long long board)

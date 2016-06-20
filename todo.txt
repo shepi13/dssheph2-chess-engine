@@ -5,9 +5,7 @@
 - add a GUI
     -probably OpenGL and freeglut, as that is what I am most familiar with.
 
-- Add pawn promotion/underpromotion, and test castling for white and black 
-both kingside and queenside. Also make castling more efficient, while not 
-necessary will make it look slightly nicer.
+- Adjust promotion and castling to work with GUI.
 
 - Merge pawn functions in moves.h into only a couple functions, rather
 than 7 one-liners. Consider inlining functions. Consider merging black
@@ -16,6 +14,12 @@ and white pawn functions.
 - Add a feature where you can disable/enable engine analysis with a 
 certain input, for example p, instead of just having q, r, and enterring
 moves as the input.
+
+- Add a feature where you can go back a move to a previous position
+
+- Keep engine from moving into check when it realizes that every line
+is getting mated (as it knows every move will lose the king eventually
+it doesn't see the difference between moves).
 
 - Clean up castling code, the main game loop, and other terrible code
 that I threw together in a rush for the deadline.

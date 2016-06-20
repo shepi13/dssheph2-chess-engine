@@ -22,14 +22,31 @@ Moves * generatePawnMoves(Moves *m, int index, int color)
 
         while(legalMoves)
         {
-            Moves_setStart(m, index, bitIndex(piece), 1);
-            Moves_setEnd(m, index, bitIndex(legalMoves & -legalMoves));
-            Moves_setFlags(m, index, 0);
-
-            index++;
+            int end = bitIndex(legalMoves & -legalMoves);
+            int start = bitIndex(piece);
+            
+            //If not promoting.
+            if(end < 56 && color== 1 || end >= 8 && color != 1)
+            {
+                Moves_setStart(m, index, start, 1);
+                Moves_setEnd(m, index, end);
+                Moves_setFlags(m, index, 0);
+                index++;
+                numMoves[color]++;
+            }
+            else
+            {
+                for(int flag = 1; flag < 5; flag++)
+                {
+                    Moves_setStart(m, index, start, 1);
+                    Moves_setEnd(m, index, end);
+                    Moves_setFlags(m, index, flag);
+                    index++;
+                    numMoves[color]++;
+                }
+            }
     
             legalMoves = legalMoves & legalMoves-1;
-            numMoves[color]++;
         }
         
         temp = temp & temp-1;       //PopLSB.

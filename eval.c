@@ -85,6 +85,7 @@ int alphaBetaSearch(int side, int currentDepth, int alpha, int beta)
 		{
 			int start = Moves_getStart(m, i);
 			int end = Moves_getEnd(m, i);
+            int flags = Moves_getFlags(m, i);
 			
 			unsigned long long tempWP = wP;
 			unsigned long long tempWQ = wQ;
@@ -104,7 +105,7 @@ int alphaBetaSearch(int side, int currentDepth, int alpha, int beta)
             int bqueentemp = blackQueenside;
             unsigned long long tempenpassant = enpassantsquare;
 
-			makeMove(start, end);
+			makeMove(start, end, flags);
 			int result = alphaBetaSearch(side + 1, currentDepth+1, alpha, beta);			
 
             enpassantsquare = tempenpassant;
@@ -152,6 +153,7 @@ int alphaBetaSearch(int side, int currentDepth, int alpha, int beta)
 		{
 			int start = Moves_getStart(m, i);
 			int end = Moves_getEnd(m, i);
+            int flags = Moves_getFlags(m, i);
 			
 			unsigned long long tempWP = wP;
             unsigned long long tempWQ = wQ;
@@ -171,7 +173,7 @@ int alphaBetaSearch(int side, int currentDepth, int alpha, int beta)
             int bqueentemp = blackQueenside;
             unsigned long long tempenpassant = enpassantsquare;
 
-            makeMove(start, end);
+            makeMove(start, end, flags);
             int result = alphaBetaSearch(side + 1, currentDepth+1, alpha, beta);
 
             wK = tempWK;

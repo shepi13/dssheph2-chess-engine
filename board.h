@@ -94,8 +94,8 @@ void Moves_setFlags(Moves * m, size_t index, unsigned int flags);
 
 void printBoard();
 void initializeBoard();
-void makeMoveFast(int start, int end, unsigned long long *piece);
-void makeMove(int start, int end);
+void makeMoveFast(int start, int end, int flags, unsigned long long *piece);
+void makeMove(int start, int end, int flags);
 void printBitBoard(unsigned long long board);
 void destroyBoard();
 

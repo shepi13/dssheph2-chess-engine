@@ -28,6 +28,20 @@ int getEnd(char* input)
     return y*8+x;
 }
 
+int getFlags(char* input)
+{
+    if(!input[4])
+        return 0;
+    else if(input[4] == 'Q' || input[4] == 'q')
+        return 1;
+    else if(input[4] == 'N' || input[4] == 'n')
+        return 2;
+    else if(input[4] == 'R' || input[4] == 'r')
+        return 3;
+    else if(input[4] == 'B' || input[4] == 'b')
+        return 4;
+}
+
 
 int main(int argc, char** argv)
 {
@@ -42,23 +56,14 @@ int main(int argc, char** argv)
     int move = 1;
     int legal;
 
-    for(int i = 0; i < 8; i++)
-    {
-        makeMove(i+8, i+24);
-    }
-
-    printBoard();
-
     do
     {
         printBoard();
-
 
         int evaluation = alphaBetaSearch(move%2, 0, -10000, 10000);
         printf("\nEval: %d\n", evaluation);
 		printf("start: %lld\n", (bestMove >> 6) & 0x3f);
 		printf("end: %lld\n", bestMove & 0x3f);
-
 
         legal = 0;
         length = getline(&inputMove, &n, stdin);
@@ -80,11 +85,13 @@ int main(int argc, char** argv)
 
         int start = getStart(inputMove);
         int end = getEnd(inputMove);
+        int flags = getFlags(inputMove);
         Moves * moves = generateLegalMoves(move%2);
         
         for(int i = 0; i < moves->numMoves; i++)
         {
-            if(start == Moves_getStart(moves, i) && end == Moves_getEnd(moves, i))
+            if(start == Moves_getStart(moves, i) && end == Moves_getEnd(moves, i) && 
+               flags == Moves_getFlags(moves, i))
             {
                 legal = 1;
                 break;
@@ -93,36 +100,36 @@ int main(int argc, char** argv)
 
         if(!strcmp(inputMove, "0-0") && move % 2 && whiteKingside && freeWKingside)
         {
-            makeMove(4, 6);
-            makeMove(7, 5);
+            makeMove(4, 6, 0);
+            makeMove(7, 5, 0);
             move--;
             continue;
         }
         else if(!strcmp(inputMove, "0-0-0") && move % 2 && whiteQueenside && freeWQueenside)
         {
-            makeMove(4, 2);
-            makeMove(0, 3);
+            makeMove(4, 2, 0);
+            makeMove(0, 3, 0);
             move--;
             continue;
         }
         if(!strcmp(inputMove, "0-0") && move % 2 == 0 && blackKingside && freeBKingside)
         {
-            makeMove(60, 62);
-            makeMove(63, 61);
+            makeMove(60, 62, 0);
+            makeMove(63, 61, 0);
             move--;
             continue;
         }
         else if(!strcmp(inputMove, "0-0-0") && move % 2 == 0 && blackQueenside && freeBQueenside)
         {
-            makeMove(60, 58);
-            makeMove(56, 59);
+            makeMove(60, 58, 0);
+            makeMove(56, 59, 0);
             move--;
             continue;
         }
 
         if(legal)
         {
-            makeMove(start, end);
+            makeMove(start, end, flags);
             move++;
         }
         else
