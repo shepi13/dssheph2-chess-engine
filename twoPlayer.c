@@ -65,6 +65,11 @@ int main(int argc, char** argv)
         printf("\nEval: %d\n", evaluation);
 		printf("start: %lld\n", (bestMove >> 6) & 0x3f);
 		printf("end: %lld\n", bestMove & 0x3f);
+        
+        if(check(1))
+            printf("White in check!\n");
+        if(check(2))
+            printf("Black in check!\n");
 
         legal = 0;
         length = getline(&inputMove, &n, stdin);

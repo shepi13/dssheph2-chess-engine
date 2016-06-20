@@ -106,6 +106,8 @@ void Moves_setStart(Moves * m, size_t index, unsigned int start, int new);
 void Moves_setFlags(Moves * m, size_t index, unsigned int flags);
 
 void storePosition(int moveNum);
+int check(int side);
+
 void printBoard();
 void initializeBoard();
 void makeMoveFast(int start, int end, int flags, unsigned long long *piece);

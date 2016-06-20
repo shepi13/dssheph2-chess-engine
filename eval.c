@@ -3,7 +3,7 @@
 
 unsigned long long bestMove;
 
-const int maxDepth = 4;
+const int maxDepth = 6;
 const int pawnVal = 100;
 const int knightVal = 350;
 const int bishopVal = 370;
@@ -61,8 +61,11 @@ int alphaBetaSearch(int side, int currentDepth, int alpha, int beta)
 	if(bK == 0)
 		return 10000; 
 
+    Moves * m = generateLegalMoves(side%2);
+
     if(currentDepth == 1)
     {
+        //check if first move caused a repetition.
         for(int i = 0; i < 1000; i++)
         {
             if (wK == prevwK[i] &&
@@ -85,7 +88,6 @@ int alphaBetaSearch(int side, int currentDepth, int alpha, int beta)
     }
 
 	
-    Moves * m = generateLegalMoves(side%2);
     if(m->numMoves == 0)
 	{
 		bestMove = 0;

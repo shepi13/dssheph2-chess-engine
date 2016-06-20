@@ -74,6 +74,63 @@ void storePosition(int moveNum)
     prevbP[moveNum] = bP;
 }
 
+int check(int side)
+{
+    int isCheck = 0;
+
+    Moves * m = generateLegalMoves((side+1)%2);
+    
+    for(int i = 0; i < m->numMoves; i++)
+    {
+        
+        int start = Moves_getStart(m, i);
+        int end = Moves_getEnd(m, i);
+        int flags = Moves_getFlags(m, i); 
+
+        unsigned long long tempWP = wP;
+        unsigned long long tempWQ = wQ;
+        unsigned long long tempWK = wK;
+        unsigned long long tempWR = wR;
+        unsigned long long tempWN = wN;
+        unsigned long long tempWB = wB;
+        unsigned long long tempBP = bP;
+        unsigned long long tempBQ = bQ;
+        unsigned long long tempBK = bK;
+        unsigned long long tempBR = bR;
+        unsigned long long tempBN = bN;
+        unsigned long long tempBB = bB;
+        int wkingtemp = whiteKingside;
+        int wqueentemp = whiteQueenside;
+        int bkingtemp = blackKingside;
+        int bqueentemp = blackQueenside;
+        unsigned long long tempenpassant = enpassantsquare;
+
+        makeMove(start, end, flags);
+        if(side == 1 && !wK || side != 1 && !bK) 
+            isCheck = 1;
+
+        enpassantsquare = tempenpassant;
+        whiteKingside = wkingtemp;
+        whiteQueenside = wqueentemp;
+        blackKingside = bkingtemp;
+        blackQueenside = bqueentemp;
+        wK = tempWK;
+        wQ = tempWQ;
+        wP = tempWP;
+        wN = tempWN;
+        wB = tempWB;
+        wR = tempWR;
+        bK = tempBK;
+        bQ = tempBQ;
+        bP = tempBP;
+        bN = tempBN;
+        bB = tempBB;
+        bR = tempBR;
+    }
+
+    return isCheck;
+}
+
 //unsigned long long kingMoves(unsigned long long 
 void printBoard()
 {
