@@ -3,7 +3,7 @@
 
 unsigned long long bestMove;
 
-const int maxDepth = 6;
+const int maxDepth = 4;
 const int pawnVal = 100;
 const int knightVal = 350;
 const int bishopVal = 370;

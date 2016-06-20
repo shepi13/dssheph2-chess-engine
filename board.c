@@ -76,59 +76,74 @@ void storePosition(int moveNum)
 
 int check(int side)
 {
-    int isCheck = 0;
-
-    Moves * m = generateLegalMoves((side+1)%2);
-    
-    for(int i = 0; i < m->numMoves; i++)
+    if(side == 1)
     {
-        
-        int start = Moves_getStart(m, i);
-        int end = Moves_getEnd(m, i);
-        int flags = Moves_getFlags(m, i); 
+        unsigned long long bRookBitboard = 0;
+        unsigned long long tempbRook = bR;
+        while(tempbRook != 0)
+        {
+            bRookBitboard |= getRookMoveBitboard(bitIndex(tempbRook & -tempbRook), 2);
+            tempbRook &= tempbRook-1;
+        }
 
-        unsigned long long tempWP = wP;
-        unsigned long long tempWQ = wQ;
-        unsigned long long tempWK = wK;
-        unsigned long long tempWR = wR;
-        unsigned long long tempWN = wN;
-        unsigned long long tempWB = wB;
-        unsigned long long tempBP = bP;
-        unsigned long long tempBQ = bQ;
-        unsigned long long tempBK = bK;
-        unsigned long long tempBR = bR;
-        unsigned long long tempBN = bN;
-        unsigned long long tempBB = bB;
-        int wkingtemp = whiteKingside;
-        int wqueentemp = whiteQueenside;
-        int bkingtemp = blackKingside;
-        int bqueentemp = blackQueenside;
-        unsigned long long tempenpassant = enpassantsquare;
+        unsigned long long bBishopBitboard = 0;
+        unsigned long long tempbBishop = bB;
+        while(tempbBishop != 0)
+        {
+            bBishopBitboard |= getBishopMoveBitboard(bitIndex(tempbBishop & -tempbBishop), 2);
+            tempbBishop &= tempbBishop-1;
+        }
 
-        makeMove(start, end, flags);
-        if(side == 1 && !wK || side != 1 && !bK) 
-            isCheck = 1;
-
-        enpassantsquare = tempenpassant;
-        whiteKingside = wkingtemp;
-        whiteQueenside = wqueentemp;
-        blackKingside = bkingtemp;
-        blackQueenside = bqueentemp;
-        wK = tempWK;
-        wQ = tempWQ;
-        wP = tempWP;
-        wN = tempWN;
-        wB = tempWB;
-        wR = tempWR;
-        bK = tempBK;
-        bQ = tempBQ;
-        bP = tempBP;
-        bN = tempBN;
-        bB = tempBB;
-        bR = tempBR;
+        unsigned long long bQueenBitboard = 0;
+        unsigned long long tempbQueen = bQ;
+        while(tempbQueen != 0)
+        {
+            bQueenBitboard |= getRookMoveBitboard(bitIndex(tempbQueen & -tempbQueen), 2);
+            bQueenBitboard |= getBishopMoveBitboard(bitIndex(tempbQueen & -tempbQueen), 2);
+            tempbQueen &= tempbQueen-1;
+        }
+        return ((blackPawnAttacks(bP) |
+                knightMoves(bN, 2) |
+                kingMoves(bK, 2) |
+                bRookBitboard |
+                bBishopBitboard |
+                bQueenBitboard) &
+                wK) != 0;
     }
+    else
+    {
+        unsigned long long wRookBitboard = 0;
+        unsigned long long tempwRook = wR;
+        while(tempwRook != 0)
+        {
+            wRookBitboard |= getRookMoveBitboard(bitIndex(tempwRook & -tempwRook), 1);
+            tempwRook &= tempwRook-1;
+        }
 
-    return isCheck;
+        unsigned long long wBishopBitboard = 0;
+        unsigned long long tempwBishop = wB;
+        while(tempwBishop != 0)
+        {
+            wBishopBitboard |= getBishopMoveBitboard(bitIndex(tempwBishop & -tempwBishop), 1);
+            tempwBishop &= tempwBishop-1;
+        }
+
+        unsigned long long wQueenBitboard = 0;
+        unsigned long long tempwQueen = wQ;
+        while(tempwQueen != 0)
+        {
+            wQueenBitboard |= getRookMoveBitboard(bitIndex(tempwQueen & -tempwQueen), 1);
+            wQueenBitboard |= getBishopMoveBitboard(bitIndex(tempwQueen & -tempwQueen), 1);
+            tempwQueen &= tempwQueen-1;
+        }
+        return ((whitePawnAttacks(wP) |
+                knightMoves(wN, 1) |
+                kingMoves(wK, 1) |
+                wRookBitboard |
+                wBishopBitboard |
+                wQueenBitboard) &
+                bK) != 0;
+    }
 }
 
 //unsigned long long kingMoves(unsigned long long 
