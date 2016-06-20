@@ -59,7 +59,31 @@ int alphaBetaSearch(int side, int currentDepth, int alpha, int beta)
 		return -10000;
 
 	if(bK == 0)
-		return 10000;
+		return 10000; 
+
+    if(currentDepth == 1)
+    {
+        for(int i = 0; i < 1000; i++)
+        {
+            if (wK == prevwK[i] &&
+                bK == prevbK[i] &&
+                wP == prevwP[i] &&
+                bP == prevbP[i] &&
+                wR == prevwR[i] &&
+                bR == prevbR[i] &&
+                wB == prevwB[i] &&
+                bB == prevbB[i] &&
+                wQ == prevwQ[i] &&
+                bQ == prevbQ[i] &&
+                wN == prevwN[i] &&
+                bN == prevbN[i]
+                )
+            {
+                return 0;
+            }
+        }
+    }
+
 	
     Moves * m = generateLegalMoves(side%2);
     if(m->numMoves == 0)

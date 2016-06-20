@@ -49,6 +49,19 @@ unsigned long long rank4, rank5;
 unsigned long long notABFile, notGHFile;
 unsigned long long notRank8, notRank1;
 
+unsigned long long prevwK[1000];
+unsigned long long prevbK[1000];
+unsigned long long prevwP[1000];
+unsigned long long prevbP[1000];
+unsigned long long prevwB[1000];
+unsigned long long prevbB[1000];
+unsigned long long prevwQ[1000];
+unsigned long long prevbQ[1000];
+unsigned long long prevwR[1000];
+unsigned long long prevbR[1000];
+unsigned long long prevwN[1000];
+unsigned long long prevbN[1000];
+
 //Move Databases
 unsigned long long * rookMoves[64];
 unsigned long long * bishopMoves[64];
@@ -92,6 +105,7 @@ void Moves_setEnd(Moves * m, size_t index, unsigned int end);
 void Moves_setStart(Moves * m, size_t index, unsigned int start, int new);
 void Moves_setFlags(Moves * m, size_t index, unsigned int flags);
 
+void storePosition(int moveNum);
 void printBoard();
 void initializeBoard();
 void makeMoveFast(int start, int end, int flags, unsigned long long *piece);

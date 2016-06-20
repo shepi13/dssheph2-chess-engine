@@ -59,6 +59,7 @@ int main(int argc, char** argv)
     do
     {
         printBoard();
+        storePosition(move);
 
         int evaluation = alphaBetaSearch(move%2, 0, -10000, 10000);
         printf("\nEval: %d\n", evaluation);

@@ -58,6 +58,22 @@ void Moves_setFlags(Moves * m, size_t index, unsigned int flags)
     m->move[index] |= (flags & 0x0f) << 12;
 }
 
+void storePosition(int moveNum)
+{
+    prevwK[moveNum] = wK;
+    prevbK[moveNum] = bK;
+    prevwB[moveNum] = wB;
+    prevbB[moveNum] = bB;
+    prevwQ[moveNum] = wQ;
+    prevbQ[moveNum] = bQ;
+    prevwR[moveNum] = wR;
+    prevbR[moveNum] = bR;
+    prevwN[moveNum] = wN;
+    prevbN[moveNum] = bN;
+    prevwP[moveNum] = wP;
+    prevbP[moveNum] = bP;
+}
+
 //unsigned long long kingMoves(unsigned long long 
 void printBoard()
 {
