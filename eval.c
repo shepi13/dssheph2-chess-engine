@@ -3,7 +3,7 @@
 
 unsigned long long bestMove;
 
-const int maxDepth = 4;
+const int maxDepth = 6;
 const int pawnVal = 100;
 const int knightVal = 350;
 const int bishopVal = 370;
@@ -37,10 +37,8 @@ int popCount(unsigned long long bitboard)
 
 int eval()
 {
-    Moves * m = generateLegalMoves(0);
-    free(m);
-    m = generateLegalMoves(1);
-    free(m);
+    numMoves[1] = getNumMoves(1);
+    numMoves[0] = getNumMoves(0);
 
     return  pawnVal * (__builtin_popcountll(wP) - __builtin_popcountll(bP)) +
             knightVal * (__builtin_popcountll(wN) - __builtin_popcountll(bN)) + 
@@ -84,6 +82,24 @@ int alphaBetaSearch(int side, int currentDepth, int alpha, int beta)
             {
                 return 0;
             }
+
+            if (0 == prevwK[i] &&
+                0 == prevbK[i] &&
+                0 == prevwP[i] &&
+                0 == prevbP[i] &&
+                0 == prevwR[i] &&
+                0 == prevbR[i] &&
+                0 == prevwB[i] &&
+                0 == prevbB[i] &&
+                0 == prevwQ[i] &&
+                0 == prevbQ[i] &&
+                0 == prevwN[i] &&
+                0 == prevbN[i]
+                )
+            {
+                break;
+            }
+            
         }
     }
 
@@ -132,6 +148,27 @@ int alphaBetaSearch(int side, int currentDepth, int alpha, int beta)
             unsigned long long tempenpassant = enpassantsquare;
 
 			makeMove(start, end, flags);
+            if(currentDepth <= 1 && check(1))
+            {                
+                enpassantsquare = tempenpassant;
+                whiteKingside = wkingtemp;
+                whiteQueenside = wqueentemp;
+                blackKingside = bkingtemp;
+                blackQueenside = bqueentemp;
+                wK = tempWK;
+                wQ = tempWQ;
+                wP = tempWP;
+                wN = tempWN;
+                wB = tempWB;
+                wR = tempWR;
+                bK = tempBK;
+                bQ = tempBQ;
+                bP = tempBP;
+                bN = tempBN;
+                bB = tempBB;
+                bR = tempBR;
+                continue;
+            }
 			int result = alphaBetaSearch(side + 1, currentDepth+1, alpha, beta);			
 
             enpassantsquare = tempenpassant;
@@ -200,6 +237,27 @@ int alphaBetaSearch(int side, int currentDepth, int alpha, int beta)
             unsigned long long tempenpassant = enpassantsquare;
 
             makeMove(start, end, flags);
+            if(currentDepth <= 1 && check(2))
+            {
+                wK = tempWK;
+                wQ = tempWQ;
+                wP = tempWP;
+                wN = tempWN;
+                wB = tempWB;
+                wR = tempWR;
+                bK = tempBK;
+                bQ = tempBQ;
+                bP = tempBP;
+                bN = tempBN;
+                bB = tempBB;
+                bR = tempBR;
+                whiteKingside = wkingtemp;
+                whiteQueenside = wqueentemp;
+                blackKingside = bkingtemp;
+                blackQueenside = bqueentemp;
+                enpassantsquare = tempenpassant;
+                continue;
+            }
             int result = alphaBetaSearch(side + 1, currentDepth+1, alpha, beta);
 
             wK = tempWK;

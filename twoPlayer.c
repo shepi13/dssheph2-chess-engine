@@ -10,7 +10,7 @@
 #define freeWKingside  !(Pieces & 0x0000000000000060)
 #define freeWQueenside !(Pieces & 0x000000000000000e)
 #define freeBKingside  !(Pieces & 0x6000000000000000)
-#define freeBQueenside !(Pieces & 0xe000000000000000)
+#define freeBQueenside !(Pieces & 0x0e00000000000000)
 
 int getStart(char* input)
 {
@@ -55,16 +55,20 @@ int main(int argc, char** argv)
 
     int move = 1;
     int legal;
+    int lastlegal = 1;
 
     do
     {
         printBoard();
         storePosition(move);
 
-        int evaluation = alphaBetaSearch(move%2, 0, -10000, 10000);
-        printf("\nEval: %d\n", evaluation);
-		printf("start: %lld\n", (bestMove >> 6) & 0x3f);
-		printf("end: %lld\n", bestMove & 0x3f);
+        if(move%2 == (atoi(argv[1]) % 2) && lastlegal)
+        {
+            int evaluation = alphaBetaSearch(move%2, 0, -10000, 10000);
+            printf("\nEval: %d\n", evaluation);
+            printf("start: %lld\n", (bestMove >> 6) & 0x3f);
+            printf("end: %lld\n", bestMove & 0x3f);
+        }
         
         if(check(1))
             printf("White in check!\n");
@@ -137,6 +141,7 @@ int main(int argc, char** argv)
         {
             makeMove(start, end, flags);
             move++;
+            lastlegal = 1;
         }
         else
         {
@@ -145,6 +150,7 @@ int main(int argc, char** argv)
             {
                 perror("Getline failed");
             }
+            lastlegal = 0;
         }
     } while(inputMove != "q");    
 

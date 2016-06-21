@@ -32,7 +32,6 @@ Moves * generatePawnMoves(Moves *m, int index, int color)
                 Moves_setEnd(m, index, end);
                 Moves_setFlags(m, index, 0);
                 index++;
-                numMoves[color]++;
             }
             else
             {
@@ -42,7 +41,6 @@ Moves * generatePawnMoves(Moves *m, int index, int color)
                     Moves_setEnd(m, index, end);
                     Moves_setFlags(m, index, flag);
                     index++;
-                    numMoves[color]++;
                 }
             }
     
@@ -78,7 +76,6 @@ Moves * generateKnightMoves(Moves *m, int index, int color)
 
             legalMoves = legalMoves & legalMoves-1;
 
-            numMoves[color]++;
         }
 
         temp = temp & temp-1;       //PopLSB.
@@ -109,8 +106,6 @@ Moves * generateKingMoves(Moves *m, int index, int color)
             index++;
 
             legalMoves = legalMoves & legalMoves-1;
-
-            numMoves[color]++;
         }
 
         temp = temp & temp-1;       //PopLSB.
@@ -141,7 +136,6 @@ Moves * generateRookMoves(Moves *m, int index, int color)
             index++;
 
             legalMoves = legalMoves & legalMoves-1;
-            numMoves[color]++;
         }
 
         temp = temp & temp-1;       //PopLSB.
@@ -173,7 +167,6 @@ Moves * generateBishopMoves(Moves *m, int index, int color)
             index++;
 
             legalMoves = legalMoves & legalMoves-1;
-            numMoves[color]++;
         }
 
         temp = temp & temp-1;       //PopLSB.
@@ -207,7 +200,6 @@ Moves * generateQueenMoves(Moves *m, int index, int color)
             index++;
 
             legalMoves = legalMoves & legalMoves-1;
-            numMoves[color]++;
         }
 
         temp = temp & temp-1;       //PopLSB.
@@ -218,8 +210,6 @@ Moves * generateQueenMoves(Moves *m, int index, int color)
 
 Moves * generateLegalMoves(int color)
 {
-    numMoves[color] = 0;
-
     Moves * m = malloc(sizeof(Moves));
     m->numMoves = 0;
     m = generatePawnMoves(m, 0, color);

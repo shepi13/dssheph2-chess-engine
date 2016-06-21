@@ -38,16 +38,15 @@ int numMoves[2];
 
 unsigned long long enpassantsquare;
 
-unsigned long long wK, wQ, wB, wN, wR, wP, bK, bQ, bB, bN, bR, bP;
 unsigned long long notAFile, notHFile;
 unsigned long long rank4, rank5;
 unsigned long long notABFile, notGHFile;
 unsigned long long notRank8, notRank1;
-unsigned long long wK, wQ, wB, wN, wR, wP, bK, bQ, bB, bN, bR, bP;
 unsigned long long notAFile, notHFile;
 unsigned long long rank4, rank5;
 unsigned long long notABFile, notGHFile;
 unsigned long long notRank8, notRank1;
+unsigned long long wP, wB, wR, wQ, wK, wN, bP, bB, bR, bQ, bK, bN; 
 
 unsigned long long prevwK[1000];
 unsigned long long prevbK[1000];
@@ -107,6 +106,7 @@ void Moves_setFlags(Moves * m, size_t index, unsigned int flags);
 
 void storePosition(int moveNum);
 int check(int side);
+int getNumMoves(int side);
 
 void printBoard();
 void initializeBoard();

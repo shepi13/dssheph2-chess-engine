@@ -146,6 +146,77 @@ int check(int side)
     }
 }
 
+int getNumMoves(int side)
+{
+    if(side != 1)
+    {
+        unsigned long long bRookBitboard = 0;
+        unsigned long long tempbRook = bR;
+        while(tempbRook != 0)
+        {
+            bRookBitboard |= getRookMoveBitboard(bitIndex(tempbRook & -tempbRook), 2);
+            tempbRook &= tempbRook-1;
+        }
+
+        unsigned long long bBishopBitboard = 0;
+        unsigned long long tempbBishop = bB;
+        while(tempbBishop != 0)
+        {
+            bBishopBitboard |= getBishopMoveBitboard(bitIndex(tempbBishop & -tempbBishop), 2);
+            tempbBishop &= tempbBishop-1;
+        }
+
+        unsigned long long bQueenBitboard = 0;
+        unsigned long long tempbQueen = bQ;
+        while(tempbQueen != 0)
+        {
+            bQueenBitboard |= getRookMoveBitboard(bitIndex(tempbQueen & -tempbQueen), 2);
+            bQueenBitboard |= getBishopMoveBitboard(bitIndex(tempbQueen & -tempbQueen), 2);
+            tempbQueen &= tempbQueen-1;
+        }
+        return (__builtin_popcountll(blackPawnMoves(bP)) +
+                __builtin_popcountll(knightMoves(bN, 2)) +
+                __builtin_popcountll(kingMoves(bK, 2)) +
+                __builtin_popcountll(bRookBitboard) +
+                __builtin_popcountll(bBishopBitboard) +
+                __builtin_popcountll(bQueenBitboard));
+    }
+    else
+    {
+        unsigned long long wRookBitboard = 0;
+        unsigned long long tempwRook = wR;
+        while(tempwRook != 0)
+        {
+            wRookBitboard |= getRookMoveBitboard(bitIndex(tempwRook & -tempwRook), 1);
+            tempwRook &= tempwRook-1;
+        }
+
+        unsigned long long wBishopBitboard = 0;
+        unsigned long long tempwBishop = wB;
+        while(tempwBishop != 0)
+        {
+            wBishopBitboard |= getBishopMoveBitboard(bitIndex(tempwBishop & -tempwBishop), 1);
+            tempwBishop &= tempwBishop-1;
+        }
+
+        unsigned long long wQueenBitboard = 0;
+        unsigned long long tempwQueen = wQ;
+        while(tempwQueen != 0)
+        {
+            wQueenBitboard |= getRookMoveBitboard(bitIndex(tempwQueen & -tempwQueen), 1);
+            wQueenBitboard |= getBishopMoveBitboard(bitIndex(tempwQueen & -tempwQueen), 1);
+            tempwQueen &= tempwQueen-1;
+        }
+        return (__builtin_popcountll(whitePawnMoves(wP)) +
+                __builtin_popcountll(knightMoves(wN, 1)) +
+                __builtin_popcountll(kingMoves(wK, 1)) +
+                __builtin_popcountll(wRookBitboard) +
+                __builtin_popcountll(wBishopBitboard) +
+                __builtin_popcountll(wQueenBitboard));
+    }
+
+}
+
 //unsigned long long kingMoves(unsigned long long 
 void printBoard()
 {
