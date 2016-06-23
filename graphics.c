@@ -18,9 +18,7 @@ void init()
     }
 }
 
-void update() {}
-
-void render()
+void draw()
 {
     glClear(GL_COLOR_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
@@ -55,7 +53,7 @@ void drawBoard()
         for(int y = 0; y < 8; y++)
         {
             if((x+y) % 2 == 0)
-                glColor3f(0.6f, 0.6f, 0.6f);
+                glColor3f(0.65f, 0.65f, 0.65f);
             else
                 glColor3f(0.85f, 0.85f, 0.85f);
 

@@ -11,7 +11,7 @@ int main(int argc, char** argv)
     glutCreateWindow("Chess Engine");
 
     init();
-    glutDisplayFunc(render);
+    glutDisplayFunc(draw);
     glutTimerFunc(1000/MYFPS, gameLoop, 0);
 
     glutMainLoop();
@@ -21,8 +21,6 @@ int main(int argc, char** argv)
 
 void gameLoop(int param)
 {
-    update();
-    render();
-    
+    draw(); 
     glutTimerFunc(1000/MYFPS, gameLoop, param);
 }
