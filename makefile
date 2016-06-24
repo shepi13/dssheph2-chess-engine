@@ -1,8 +1,10 @@
 CC= gcc
-GLLIBS= -lGL -lGLU -lglut
 FLAGS= -Ofast -std=c99
+
 TEXTOBJS= board.o eval.o moves.o twoPlayer.o magicNumbers.o magicGeneration.o moveGeneration.o
 TEXTEXE= textGame
+
+GLLIBS= -lGL -lGLU -lglut
 GLOBJS = graphics.o main.o
 GLEXE = glChess
 
