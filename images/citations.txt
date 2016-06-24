@@ -1,8 +1,0 @@
-Current knightW.png image downloaded from:
-    www.veryicon.com/icons/system/ios7-minimal/chess-knight-1.html
-    
-Author: VisualPharm
-License: Free for non-commercial use.
-
-
-I created all other piece images using simple photo-editing software.
