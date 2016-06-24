@@ -57,6 +57,12 @@ int main(int argc, char** argv)
     int legal;
     int lastlegal = 1;
 
+    if(argc != 2)
+    {
+        printf("Usage ./textgame <computer-side> \n");
+        exit(EXIT_FAILURE);
+    }
+
     do
     {
         printBoard();
