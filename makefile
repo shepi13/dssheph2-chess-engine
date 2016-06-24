@@ -6,10 +6,18 @@ TEXTEXE= textGame
 GLOBJS = graphics.o main.o
 GLEXE = glChess
 
+#To compile for windows, set CC=$(WINCC)
+#Still need to remove getline references before this will work
+#for textGame
+WINCC= x86_64-w64-mingw32-gcc
+
 all : textGame glChess
 
 textGame : $(TEXTOBJS)
 	$(CC) -o $(TEXTEXE) $(TEXTOBJS)
+
+glChess : $(GLOBJS)
+	$(CC) -o $(GLEXE) $(GLOBJS) $(GLLIBS)
 
 board.o : board.c board.h
 	$(CC) $(FLAGS) -c board.c
@@ -31,12 +39,6 @@ moveGeneration.o : moveGeneration.c moveGeneration.h
 
 twoPlayer.o : twoPlayer.c
 	$(CC) $(FLAGS) -c twoPlayer.c
-
-windows : board.c eval.c moves.c twoPlayer.c magicNumbers.c magicGeneration.c moveGeneration.c
-	x86_64-w64-mingw32-gcc -o myChess.exe -Ofast -std=c99 board.c eval.c moves.c twoPlayer.c magicNumbers.c magicGeneration.c moveGeneration.c
-
-glChess : $(GLOBJS)
-	$(CC) -o $(GLEXE) $(GLOBJS) $(GLLIBS)
 
 main.o : main.c
 	$(CC) $(FLAGS) -c main.c
