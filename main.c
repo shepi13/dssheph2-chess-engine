@@ -1,4 +1,4 @@
-#include "graphics.h"
+#include "glBoard.h"
 
 void gameLoop(int);
 

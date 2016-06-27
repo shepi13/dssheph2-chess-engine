@@ -6,7 +6,7 @@ TEXTOBJS= board.o eval.o moves.o twoPlayer.o magicNumbers.o magicGeneration.o mo
 TEXTEXE= textGame
 
 GLLIBS= -lGL -lGLU -lglut
-GLOBJS= pieceIcon.o graphics.o main.o
+GLOBJS= pieceIcon.o glBoard.o main.o
 GLEXE= glChess
 
 ILLIBS= $(shell pkg-config --libs ILU)
@@ -51,8 +51,8 @@ main.o : main.c
 pieceIcon.o : pieceIcon.c pieceIcon.h
 	$(CC) $(FLAGS) -c pieceIcon.c
 
-graphics.o : graphics.c graphics.h
-	$(CC) $(FLAGS) -c graphics.c
+glBoard.o : glBoard.c glBoard.h
+	$(CC) $(FLAGS) -c glBoard.c
 
 clean:
 	rm -f *.o

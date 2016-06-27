@@ -22,6 +22,7 @@ void mouseHandler(int button, int state, int x, int y);
 
 void drawBorder();
 void drawBoard();
-void drawPieces();
+
+void cleanUp();
 
 #endif
