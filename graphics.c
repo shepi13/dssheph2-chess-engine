@@ -1,6 +1,6 @@
 #include "graphics.h"
 
-void init()
+void setupGL()
 {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
@@ -11,11 +11,30 @@ void init()
 
     glClearColor(0.85f, 0.85f, 0.85f, 1.f);
 
+    glEnable(GL_TEXTURE_2D);
+
     if(glGetError() != GL_NO_ERROR)
     {
         perror("Failed to initialize openGL");
         exit(EXIT_FAILURE);
     }
+}
+
+void setupIL()
+{
+    ilInit();
+    ilClearColor(255, 255, 255, 000);
+
+    if(ilGetError() != IL_NO_ERROR)
+    {
+        perror("Failed to initialize openGL");
+        exit(EXIT_FAILURE);
+    }
+}
+
+void loadPieces()
+{
+
 }
 
 void draw()
@@ -68,3 +87,13 @@ void drawBoard()
 }
 
 void drawPieces() {}
+
+void keyHandler(unsigned char key, int x, int y)
+{
+
+}
+
+void mouseHandler(int button, int state, int x, int y)
+{
+
+}

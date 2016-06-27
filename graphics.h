@@ -13,9 +13,11 @@
 #define BOARDWIDTH (8*SQUAREWIDTH)
 #define BOARDHEIGHT (8*SQUAREHEIGHT)
 
-void init();
+void setupGL();
+void setupIL();
 void draw();
-void keyHandler(unsigned int key, int x, int y);
+void loadPieces();
+void keyHandler(unsigned char key, int x, int y);
 void mouseHandler(int button, int state, int x, int y);
 
 void drawBorder();

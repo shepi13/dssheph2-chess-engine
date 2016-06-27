@@ -1,12 +1,15 @@
 CC= gcc
-FLAGS= -Ofast -std=c99
+ILFLAGS= $(shell pkg-config --cflags ILU)
+FLAGS= -Ofast -std=c99 $(ILFLAGS)
 
 TEXTOBJS= board.o eval.o moves.o twoPlayer.o magicNumbers.o magicGeneration.o moveGeneration.o
 TEXTEXE= textGame
 
 GLLIBS= -lGL -lGLU -lglut
-GLOBJS = graphics.o main.o
-GLEXE = glChess
+GLOBJS= pieceIcon.o graphics.o main.o
+GLEXE= glChess
+
+ILLIBS= $(shell pkg-config --libs ILU)
 
 #To compile for windows, set CC=$(WINCC)
 #Still need to remove getline references before this will work
@@ -19,7 +22,7 @@ textGame : $(TEXTOBJS)
 	$(CC) -o $(TEXTEXE) $(TEXTOBJS)
 
 glChess : $(GLOBJS)
-	$(CC) -o $(GLEXE) $(GLOBJS) $(GLLIBS)
+	$(CC) -o $(GLEXE) $(GLOBJS) $(GLLIBS) $(ILLIBS)
 
 board.o : board.c board.h
 	$(CC) $(FLAGS) -c board.c
@@ -44,6 +47,9 @@ twoPlayer.o : twoPlayer.c
 
 main.o : main.c
 	$(CC) $(FLAGS) -c main.c
+
+pieceIcon.o : pieceIcon.c pieceIcon.h
+	$(CC) $(FLAGS) -c pieceIcon.c
 
 graphics.o : graphics.c graphics.h
 	$(CC) $(FLAGS) -c graphics.c

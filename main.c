@@ -10,8 +10,13 @@ int main(int argc, char** argv)
     glutInitWindowSize(MYWIDTH, MYHEIGHT);
     glutCreateWindow("Chess Engine");
 
-    init();
+    setupGL();
+    setupIL();
+    loadPieces();
+
     glutDisplayFunc(draw);
+    glutKeyboardFunc(keyHandler);
+    glutMouseFunc(mouseHandler);
     glutTimerFunc(1000/MYFPS, gameLoop, 0);
 
     glutMainLoop();
