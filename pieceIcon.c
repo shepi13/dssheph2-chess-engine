@@ -38,6 +38,14 @@ void pieceIcon_load(pieceIcon* self, char* path)
     self->height = (GLuint) ilGetInteger(IL_IMAGE_HEIGHT);
     GLuint* data = (GLuint*) ilGetData();
 
+    for(int i = 0; i < self->width*self->height; i++)
+    {
+        GLubyte* colors = (GLubyte*) &data[i];
+        
+        if(colors[0] > 220 && colors[1] > 220 && colors[2] > 220)    
+            colors[3] = 0x00;
+    }
+
     glGenTextures(1, &(self->ID));
     glBindTexture(GL_TEXTURE_2D, self->ID);
 
