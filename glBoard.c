@@ -1,5 +1,6 @@
 #include "glBoard.h"
 #include "pieceIcon.h"
+#include "board.h"
 
 pieceIcon pawnW, pawnB;
 pieceIcon rookW, rookB;
@@ -124,8 +125,36 @@ void drawBoard()
                 glVertex2f(x*SQUAREWIDTH, (y+1)*SQUAREHEIGHT);
             glEnd(); 
 
+            currentPiece = NULL;
+            int shift = x+8*(7-y);
+
+            if((wK >> shift) % 2)
+                currentPiece = &kingW; 
+            else if((wQ >> shift) % 2)
+                currentPiece = &queenW; 
+            else if((wN >> shift) % 2)
+                currentPiece = &knightW; 
+            else if((wP >> shift) % 2)
+                currentPiece = &pawnW; 
+            else if((wR >> shift) % 2)
+                currentPiece = &rookW; 
+            else if((wB >> shift) % 2)
+                currentPiece = &bishopW; 
+            else if((bK >> shift) % 2)
+                currentPiece = &kingB; 
+            else if((bQ >> shift) % 2)
+                currentPiece = &queenB; 
+            else if((bN >> shift) % 2)
+                currentPiece = NULL; 
+            else if((bP >> shift) % 2)
+                currentPiece = &pawnB; 
+            else if((bR >> shift) % 2)
+                currentPiece = &rookB; 
+            else if((bB >> shift) % 2)
+                currentPiece = &bishopB; 
+
             glColor3f(1.f, 1.f, 1.f);
-            pieceIcon_draw(&pawnB, x*SQUAREWIDTH, y*SQUAREHEIGHT);
+            pieceIcon_draw(currentPiece, x*SQUAREWIDTH, y*SQUAREHEIGHT);
         }
     } 
 }

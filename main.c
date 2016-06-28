@@ -1,4 +1,5 @@
 #include "glBoard.h"
+#include "board.h"
 
 void gameLoop(int);
 
@@ -13,6 +14,7 @@ int main(int argc, char** argv)
     setupGL();
     setupIL();
     loadPieces();
+    initializeBoard();
 
     glutDisplayFunc(draw);
     glutKeyboardFunc(keyHandler);

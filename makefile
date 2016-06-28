@@ -6,7 +6,7 @@ TEXTOBJS= board.o eval.o moves.o twoPlayer.o magicNumbers.o magicGeneration.o mo
 TEXTEXE= textGame
 
 GLLIBS= -lGL -lGLU -lglut
-GLOBJS= pieceIcon.o glBoard.o main.o
+GLOBJS= pieceIcon.o glBoard.o board.o moves.o magicNumbers.o magicGeneration.o moveGeneration.o main.o
 GLEXE= glChess
 
 ILLIBS= $(shell pkg-config --libs ILU)
