@@ -16,7 +16,7 @@ int hashTable_get(hashTable* self, unsigned long long key)
 {
     unsigned long long idx = key % self->size;
     
-    if(self->table[idx].key != key && self->table[idx].depth > self->reqDepth)
+    if(self->table[idx].key != key && self->table[idx].depth >= self->reqDepth)
         return -1;
 
     return self->table[idx].eval;
