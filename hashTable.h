@@ -8,6 +8,7 @@ struct elementStruct
 {
     unsigned long long key;
     int eval;
+    int depth;
 };
 
 typedef struct elementStruct element;
@@ -16,6 +17,7 @@ struct hashTableStruct
 {
     element* table;
     unsigned long long size;
+    int reqDepth;
 };
 
 typedef struct hashTableStruct hashTable;
